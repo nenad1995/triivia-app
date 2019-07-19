@@ -1,15 +1,23 @@
-import Axios from 'axios';
+import Axios from 'axios'
 
 class TriviaService {
   constructor() {
     this.client = new Axios.create({
-      baseURL: 'http://jservice.io/api/'
+      baseURL: 'http://jservice.io/api'
     })
   }
 
-  getRandomTrivias() {
-    return this.client.get('random', {
-      params: { count: 30 }
+  getRandomTrivias(triviaCategoryId) {
+    return this.client.get('/random', {
+      params: { count: 30, category: triviaCategoryId }
+    })
+  }
+
+  getTriviaCategories(numberOfCategories = 10) {
+    return this.client.get('/categories', {
+      params: {
+        count: numberOfCategories
+      }
     })
   }
 }
