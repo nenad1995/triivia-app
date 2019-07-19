@@ -2,7 +2,8 @@ import { chuckService } from './../services/Chuch.service'
 
 export const ChuckModule = {
   state: {
-    randomJoke: null
+    randomJoke: null,
+    jokeCategory: ''
   },
 
   getters: {
@@ -14,12 +15,16 @@ export const ChuckModule = {
   mutations: {
     setRandomJoke(state, joke) {
       state.randomJoke = joke
+    },
+
+    setJokeCategory(state, jokeCategory) {
+      state.jokeCategory = jokeCategory;
     }
   },
 
   actions: {
     fetchRandomJoke(store, next = () => {} ) {
-      chuckService.getRandomJoke()
+      chuckService.getRandomJoke(store.state.jokeCategory)
         .then( response => {
           store.commit('setRandomJoke', response)
           next()

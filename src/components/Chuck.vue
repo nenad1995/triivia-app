@@ -7,14 +7,22 @@
       <div class="card-body">
         <p class="card-text"
            v-text="randomJoke.value">
-        </p>
+      </p>
       </div>
+      <input class="form-control mb-2"
+              type="text"
+              placeholder="Enter joke category"
+              @input="setCategory"
+      />
+      <button class="btn btn-primary" @click="getNewJoke">
+        Get new joke
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 import { store } from './../store'
 
 export default {
@@ -26,11 +34,23 @@ export default {
     })
   },
 
-  // methods: {
-  //   ...mapActions([
-  //     'fetchRandomJoke'
-  //   ])
-  // },
+  methods: {
+    // ...mapActions([
+    //   'fetchRandomJoke'
+    // ]),
+
+    ...mapMutations([
+      'setJokeCategory'
+    ]),
+
+    setCategory(event) {
+      this.setJokeCategory(event.target.value)
+    },
+
+    getNewJoke() {
+      store.dispatch('fetchRandomJoke')
+    }
+  },
 
   // created() {
   //   this.fetchRandomJoke()
