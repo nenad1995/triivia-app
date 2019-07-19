@@ -8,6 +8,11 @@
               TriviaApp
             </router-link>
           </li>
+          <li class="nav-item active">
+            <router-link :to="{ name: 'chuck' }" class="navbar-brand">
+              Chuck
+            </router-link>
+          </li>
         </ul>
       </div>
     </nav>
