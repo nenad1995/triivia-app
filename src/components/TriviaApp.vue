@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'TriviaApp'
+  
 }
 </script>
